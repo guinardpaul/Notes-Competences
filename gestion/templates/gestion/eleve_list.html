@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-xs-2">
+		<select class="form-control" id="classe" name="classe_list" onChange="redirectUrl()">
+			<option value="">Classe</option>
+			{% for classe in classe_list %}
+			<option {% if classe == current_classe %} selected="selected" {% endif %} value="{{classe.id}}">{{classe.nom}}</option>
+			{% endfor %}
+		</select>
+	</div>
+	&nbsp;
+	<div class="col-xs-6">
+		<a class="btn btn-info" href="/gestion/eleve/add">Ajouter</a>
+	</div>
+</div>
+<br/>
+{% if eleve_list %}
+<table class="table table-hover table-responsive">
+	<thead>
+		<tr>
+			<th>Nom</th>
+			<th>Prénom</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for eleve in eleve_list %}
+		<tr>
+			<td>{{eleve.nom}}</td>
+			<td>{{eleve.prenom}}</td>
+			<td>
+				<div class="btn-group">
+					<a class="btn btn-sm btn-warning" href="/gestion/eleve/update/{{eleve.id}}">Modifier</a>
+					<a class="btn btn-sm btn-danger" href="/gestion/eleve/delete/{{eleve.id}}">Supprimer</a>
+				</div>
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% else %}
+<p>Aucune donnée à afficher</p>
+{% endif %}
+<script>
+function redirectUrl() {
+    var classe_id = document.getElementById("classe").value;
+    console.log("You selected: " + classe_id);
+    window.location.href = "/gestion/eleve/" + classe_id
+}
+</script>
+{% endblock %}
+

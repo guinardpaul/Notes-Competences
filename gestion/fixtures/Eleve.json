@@ -1,0 +1,155 @@
+[
+	{
+		"model": "gestion.Eleve",
+		"pk": 1,
+		"fields": {
+			"nom": "ALBERT",
+			"prenom": "Maël",
+			"classe_id": 1
+		}
+	},{
+		"model": "gestion.Eleve",
+		"pk": 2,
+		"fields": {
+			"nom": "BELINGAND -- DURAN",
+			"prenom": "Pierre",
+			"classe_id": 1
+		}
+	},{
+		"model": "gestion.Eleve",
+		"pk": 3,
+		"fields": {
+			"nom": "CARPENTIER",
+			"prenom": "Maïana",
+			"classe_id": 1
+		}
+	},{
+		"model": "gestion.Eleve",
+		"pk": 4,
+		"fields": {
+			"nom": "CATALA - BAILLY",
+			"prenom": "Iloni",
+			"classe_id": 1
+		}
+	},{
+		"model": "gestion.Eleve",
+		"pk": 5,
+		"fields": {
+			"nom": "CATALA - CARRIE",
+			"prenom": "Rose",
+			"classe_id": 1
+		}
+	},{
+		"model": "gestion.Eleve",
+		"pk": 6,
+		"fields": {
+			"nom": "CHABBERT",
+			"prenom": "Simon",
+			"classe_id": 1
+		}
+	},{
+		"model": "gestion.Eleve",
+		"pk": 7,
+		"fields": {
+			"nom": "COMBES",
+			"prenom": "Anaïs",
+			"classe_id": 1
+		}
+	},{
+		"model": "gestion.Eleve",
+		"pk": 8,
+		"fields": {
+			"nom": "CROS -- CASANOVA",
+			"prenom": "Léa",
+			"classe_id": 1
+		}
+	},{
+		"model": "gestion.Eleve",
+		"pk": 9,
+		"fields": {
+			"nom": "JAUZION",
+			"prenom": "Nicolas",
+			"classe_id": 1
+		}
+	},{
+		"model": "gestion.Eleve",
+		"pk": 10,
+		"fields": {
+			"nom": "JOUSSERAND",
+			"prenom": "Julian",
+			"classe_id": 1
+		}
+	},{
+		"model": "gestion.Eleve",
+		"pk": 11,
+		"fields": {
+			"nom": "LE CAM",
+			"prenom": "Eliot",
+			"classe_id": 1
+		}
+	},{
+		"model": "gestion.Eleve",
+		"pk": 12,
+		"fields": {
+			"nom": "LOEILLET-CABANIS",
+			"prenom": "Eva",
+			"classe_id": 1
+		}
+	},{
+		"model": "gestion.Eleve",
+		"pk": 13,
+		"fields": {
+			"nom": "NOEL",
+			"prenom": "Arsène",
+			"classe_id": 1
+		}
+	},{
+		"model": "gestion.Eleve",
+		"pk": 14,
+		"fields": {
+			"nom": "POUSTHOMIS",
+			"prenom": "Sarah",
+			"classe_id": 1
+		}
+	},{
+		"model": "gestion.Eleve",
+		"pk": 15,
+		"fields": {
+			"nom": "ROCACHER",
+			"prenom": "Lola",
+			"classe_id": 1
+		}
+	},{
+		"model": "gestion.Eleve",
+		"pk": 16,
+		"fields": {
+			"nom": "SANS",
+			"prenom": "Célène",
+			"classe_id": 1
+		}
+	},{
+		"model": "gestion.Eleve",
+		"pk": 17,
+		"fields": {
+			"nom": "SENEGAS",
+			"prenom": "Zia",
+			"classe_id": 1
+		}
+	},{
+		"model": "gestion.Eleve",
+		"pk": 18,
+		"fields": {
+			"nom": "WINDEL",
+			"prenom": "Camille",
+			"classe_id": 1
+		}
+	},{
+		"model": "gestion.Eleve",
+		"pk": 19,
+		"fields": {
+			"nom": "ZNIBER",
+			"prenom": "Maïa",
+			"classe_id": 1
+		}
+	}
+]

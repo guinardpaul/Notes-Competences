@@ -1,0 +1,25 @@
+{% extends 'classe/layout.html' %}
+
+{% block content %}
+<h3>Classe index view</h3>
+{% if classe_list %}
+<table class="highlight">
+	<thead>
+		<tr>
+			<th>Nom</th>
+			<th>Cycle</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for classe in classe_list %}
+		<tr>
+			<td>{{classe.nom}}</td>
+			<td>{{classe.cycle}}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% else %}
+<p>Aucune classe à afficher</p>
+{% endif %}
+{% endblock %}

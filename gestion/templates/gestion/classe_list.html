@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<a class="btn btn-info" href="/gestion/classe/add">Ajouter</a>
+<br/>
+<br/>
+{% if classe_list %}
+<table class="table table-hover table-responsive">
+	<thead>
+		<tr>
+			<th>Nom</th>
+			<th>Cycle</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for classe in classe_list %}
+		<tr>
+			<td>{{classe.nom}}</td>
+			<td>{{classe.cycle}}</td>
+			<td>
+				<div class="btn-group">
+					<a class="btn btn-sm btn-primary" href="/gestion/eleve/{{classe.id}}">Voir liste élèves</a>
+					<a class="btn btn-sm btn-warning" href="/gestion/classe/update/{{classe.id}}">Modifier</a>
+					<a class="btn btn-sm btn-danger" href="/gestion/classe/delete/{{classe.id}}">Supprimer</a>
+				</div>
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% else %}
+<p>Aucune donnée à afficher</p>
+{% endif %}
+{% if addForm %}
+{% include 'gestion/classe_form.html' %}
+{% endif %}
+{% endblock %}

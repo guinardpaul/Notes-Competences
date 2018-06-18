@@ -1,0 +1,80 @@
+[
+	{
+		"model": "gestion.Classe",
+		"pk": 1,
+		"fields": {
+			"nom": "6_G5",
+			"cycle": "Cycle 3"
+		}
+	},{
+		"model": "gestion.Classe",
+		"pk": 2,
+		"fields": {
+			"nom": "6_G4",
+			"cycle": "Cycle 3"
+		}
+	},{
+		"model": "gestion.Classe",
+		"pk": 3,
+		"fields": {
+			"nom": "6_G3",
+			"cycle": "Cycle 3"
+		}
+	},{
+		"model": "gestion.Classe",
+		"pk": 4,
+		"fields": {
+			"nom": "6_G2",
+			"cycle": "Cycle 3"
+		}
+	},{
+		"model": "gestion.Classe",
+		"pk": 5,
+		"fields": {
+			"nom": "6_G1",
+			"cycle": "Cycle 3"
+		}
+	},{
+		"model": "gestion.Classe",
+		"pk": 6,
+		"fields": {
+			"nom": "301",
+			"cycle": "Cycle 4"
+		}
+	},{
+		"model": "gestion.Classe",
+		"pk": 7,
+		"fields": {
+			"nom": "302",
+			"cycle": "Cycle 4"
+		}
+	},{
+		"model": "gestion.Classe",
+		"pk": 8,
+		"fields": {
+			"nom": "303",
+			"cycle": "Cycle 4"
+		}
+	},{
+		"model": "gestion.Classe",
+		"pk": 9,
+		"fields": {
+			"nom": "304",
+			"cycle": "Cycle 4"
+		}
+	},{
+		"model": "gestion.Classe",
+		"pk": 10,
+		"fields": {
+			"nom": "5_G3",
+			"cycle": "Cycle 4"
+		}
+	},{
+		"model": "gestion.Classe",
+		"pk": 11,
+		"fields": {
+			"nom": "5_G4",
+			"cycle": "Cycle 4"
+		}
+	}
+]
