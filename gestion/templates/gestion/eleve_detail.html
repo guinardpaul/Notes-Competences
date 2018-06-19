@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<h3>Eleve</h3>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+	<div class="col-sm-4">
+		<div class="card">
+			<div class="card-header">Informations</div>
+			<div class="card-body">
+				<div>
+					<label>Nom :</label>
+					<label class="bold-text">{{eleve.nom}}</label>
+				</div>
+				<div>
+					<label>Prénom :</label>
+					<label class="bold-text">{{eleve.prenom}}</label>
+				</div>
+				<div>
+					<label>Classe :</label>
+					<label class="bold-text">{{eleve.classe}}</label>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-8">
+		<h3>Tableau resultats de l'élève</h3>
+	</div>
+</div>
+{% endblock %}

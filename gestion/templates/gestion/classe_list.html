@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
 {% block title %}
-<h3>Liste des classes</h3>
-<a class="btn btn-info" href="{% url 'gestion:add_classe' %}">Ajouter classe</a>
+
 {% endblock %}
 {% block content %}
-<br/>
+
 {% if classe_list %}
 <table class="table table-hover table-responsive">
+	<caption style="caption-side: top; text-align: center;">Liste des classes   <a class="btn btn-info" href="{% url 'gestion:add_classe' %}">Ajouter classe</a></caption>
 	<thead>
 		<tr>
 			<th>Nom</th>

@@ -1,7 +1,55 @@
+{% extends 'base.html' %}
+
 {% block title %}
-<h3>{{classe.nom}} - {{classe.cycle}}</h3>
 {% endblock %}
 
 {% block content %}
-
+<div class="row">
+	<div class="col-sm-4">
+		<div class="card">
+			<div class="card-header">Informations</div>
+			<div class="card-body">
+				<div>
+					<label>Nom classe :</label>
+					<label class="bold-text">{{classe.nom}}</label>
+				</div>
+				<div>
+					<label>Cycle :</label>
+					<label class="bold-text">{{classe.cycle}}</label>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-8">
+		{% if eleve_list %}
+		<table class="table table-hover table-responsive">
+			<caption style="caption-side: top;text-align: center;">Liste des élèves</caption>
+			<thead>
+				<tr>
+					<th>Nom</th>
+					<th>Prénom</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for eleve in eleve_list %}
+				<tr>
+					<td>{{eleve.nom}}</td>
+					<td>{{eleve.prenom}}</td>
+					<td>
+						<div class="btn-group">
+							<a class="btn btn-sm btn-primary" href="{% url 'gestion:eleve_detail' eleve.id %}">Détails</a>
+							<a class="btn btn-sm btn-warning" href="{% url 'gestion:update_eleve' eleve.id %}">Modifier</a>
+							<a class="btn btn-sm btn-danger" href="{% url 'gestion:delete_eleve' eleve.id %}">Supprimer</a>
+						</div>
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+{% else %}
+<p>Aucune donnée à afficher</p>
+{% endif %}
+	</div>
+</div>
 {% endblock %}
