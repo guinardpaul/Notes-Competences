@@ -1,8 +1,26 @@
 {% extends 'base.html' %}
+{% block title %}
+<h3>Ajouter une classe</h3>
+{% endblock %}
+
 {% block content %}
-<form class="form" method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" class="btn btn-success" value="Sauver" />
-    <a class="btn btn-default" href="/gestion/classe">Annuler</a>
-</form>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-12 col-md-7 col-lg-7">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<form class="form-vertical" action="" method="post">
+						{% csrf_token %}
+						{% include 'gestion/form-template.html' %}
+					    <div class="form-group">
+					    	<div class="col-sm-offset-2 col-sm-10">
+					    		<input type="submit" class="btn btn-success" value="Sauver" />
+					    		<a class="btn btn-default" href="/gestion/classe">Annuler</a>
+					    	</div>
+					    </div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}

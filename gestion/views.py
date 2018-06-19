@@ -12,6 +12,10 @@ class ClasseListView(generic.ListView):
 	def get_queryset(self):
 		return Classe.objects.all().order_by('cycle', 'nom')
 
+class ClasseDetail(generic.DetailView):
+	model = Classe
+	template_name = 'gestion/classe_detail.html'
+
 class ClasseCreate(generic.edit.CreateView):
 	model = Classe
 	fields = ['nom', 'cycle']
@@ -27,20 +31,19 @@ class ClasseDelete(generic.edit.DeleteView):
 	model = Classe
 	success_url = reverse_lazy('gestion:classe_list')
 
-# class EleveListView(generic.ListView):
-# 	template_name = 'gestion/eleve_list.html'
-# 	context_object_name = 'eleve_list'
+class EleveListView(generic.ListView):
+	template_name = 'gestion/eleve_list.html'
+	context_object_name = 'eleve_list'
 
-# 	def get_queryset(self):
-# 		if classe_id != None:
-# 			eleve_list = Eleve.objects.filter(classe_id=classe_id).order_by('nom')
-# 		else:
-# 			eleve_list = Eleve.objects.all().order_by('nom')
-# 		return eleve_list
+	def get_queryset(self):
+		if classe_id != None:
+			eleve_list = Eleve.objects.filter(classe_id=classe_id).order_by('nom')
+		else:
+			eleve_list = Eleve.objects.all().order_by('nom')
+		return eleve_list
 
 def eleveList(request, classe_id=None):
 	# On recupere la liste de classe pour le select
-	classe_list = Classe.objects.all()
 
 	if classe_id != None:
 		current_classe = Classe.objects.get(pk=classe_id)
@@ -50,17 +53,15 @@ def eleveList(request, classe_id=None):
 		eleve_list = Eleve.objects.all().order_by('nom')
 
 	context = { 
-		'eleve_list': eleve_list, 
-		'classe_list': classe_list,
+		'eleve_list': eleve_list,
 		'current_classe': current_classe,
 		}
-
 	return render(request, 'gestion/eleve_list.html', context)
 
 class EleveCreate(generic.edit.CreateView):
 	model = Eleve
 	fields = ['nom', 'prenom', 'classe']
-	success_url = reverse_lazy('gestion:eleve_list')
+	success_url = reverse_lazy('gestion:eleve_list_filtered')
 
 class EleveUpdate(generic.edit.UpdateView):
 	model = Eleve
@@ -71,6 +72,12 @@ class EleveUpdate(generic.edit.UpdateView):
 class EleveDelete(generic.edit.DeleteView):
 	model = Eleve
 	success_url = reverse_lazy('gestion:eleve_list')
+
+def login(request):
+	pass
+
+class CompetenceListView(generic.ListView):
+	pass
 
 # def index(request):
 # 	classe_list = Classe.objects.all()

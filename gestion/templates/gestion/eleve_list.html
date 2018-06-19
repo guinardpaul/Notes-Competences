@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 
+{% block title %}
+<h3>{{current_classe.nom}} - {{current_classe.cycle}} - Liste des élèves</h3>
+<a class="btn btn-info" href="{% url 'gestion:add_eleve' %}">Ajouter élèves</a>
+{% endblock %}
 {% block content %}
-<div class="row">
+<!-- <div class="row">
     <div class="col-xs-2">
 		<select class="form-control" id="classe" name="classe_list" onChange="redirectUrl()">
 			<option value="">Classe</option>
@@ -12,9 +16,9 @@
 	</div>
 	&nbsp;
 	<div class="col-xs-6">
-		<a class="btn btn-info" href="/gestion/eleve/add">Ajouter</a>
+		<a class="btn btn-info" href="{% url 'gestion:add_eleve' %}">Ajouter</a>
 	</div>
-</div>
+</div> -->
 <br/>
 {% if eleve_list %}
 <table class="table table-hover table-responsive">
@@ -32,8 +36,8 @@
 			<td>{{eleve.prenom}}</td>
 			<td>
 				<div class="btn-group">
-					<a class="btn btn-sm btn-warning" href="/gestion/eleve/update/{{eleve.id}}">Modifier</a>
-					<a class="btn btn-sm btn-danger" href="/gestion/eleve/delete/{{eleve.id}}">Supprimer</a>
+					<a class="btn btn-sm btn-warning" href="{% url 'gestion:update_eleve' eleve.id %}">Modifier</a>
+					<a class="btn btn-sm btn-danger" href="{% url 'gestion:delete_eleve' eleve.id %}">Supprimer</a>
 				</div>
 			</td>
 		</tr>

@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 CYCLE = (
@@ -10,6 +11,9 @@ class Classe(models.Model):
 	""" Classe model. """
 	nom = models.CharField(max_length=5, unique=True)
 	cycle = models.CharField(max_length=7, choices=CYCLE)
+
+	def get_absolute_url(self):
+		return reverse('gestion:classe_detail', kwargs={ 'pk': self.pk })
 
 	def __str__(self):
 		return self.nom
