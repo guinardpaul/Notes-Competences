@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'authentication',
     'resultat',
     'gestion',
     'django.contrib.admin',
@@ -75,22 +76,22 @@ WSGI_APPLICATION = 'NotesCompetences.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'notesCompetencesdb',
-#         'HOST': 'localhost',
-#         'PORT': '',
-#         'USER': 'root',
-#         'PASSWORD': '',
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'notesCompetencesdb',
+        'HOST': 'localhost',
+        'PORT': '',
+        'USER': 'root',
+        'PASSWORD': '',
+    }
+}
 
 
 # Password validation
@@ -125,6 +126,8 @@ USE_L10N = True
 
 USE_TZ = True
 
+# LOGGIN
+LOGGIN_URL = "authentication:sign-up"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/dev/howto/static-files/

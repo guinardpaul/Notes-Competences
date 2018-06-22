@@ -24,24 +24,33 @@ class Eleve(models.Model):
 	prenom = models.CharField(max_length=200)
 	classe = models.ForeignKey(Classe, on_delete=models.CASCADE)
 
+	def get_absolute_url(self):
+		return reverse('gestion:eleve_detail', kwargs={ 'pk': self.pk })
+
 	def __str__(self):
 		return self.nom + ' ' + self.prenom
 
 class Domaine(models.Model):
 	""" Domaine model. """
-	ref = models.CharField(max_length=10, unique=True)
-	description = models.CharField(max_length=200)
+	ref = models.CharField(max_length=10)
+	description = models.CharField(max_length=200) 
 	cycle = models.CharField(max_length=7, choices=CYCLE)
+
+	class meta:
+		unique_together = ('ref', 'cycle')
 
 	def __str__(self):
 		return self.ref
 
 class Competence(models.Model):
 	""" Competence model. """
-	ref = models.CharField(max_length=10, unique=True)
+	ref = models.CharField(max_length=10)
 	description = models.CharField(max_length=200)
 	cycle = models.CharField(max_length=7, choices=CYCLE)
 	domaine = models.ForeignKey(Domaine, on_delete=models.CASCADE)
 
+	class meta:
+		unique_together = ('ref', 'cycle')
+	
 	def __str__(self):
 		return self.ref

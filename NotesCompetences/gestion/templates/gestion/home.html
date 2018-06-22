@@ -4,9 +4,9 @@
 {% endblock %}
 
 {% block content %}
-{% if utilisateur %}
-<p>Bonjour {{utilisateur}}. Heureux de vous revoir.</p>
+{% if user.is_authenticated %}
+<p>Bonjour {{user}}. Heureux de vous revoir.</p>
 {% else %}
-<p><a href="{% url 'gestion:login' %}">Se connecter</a> pour commencer.</p>
+<p><a href="{% url 'authentication:sign-up' %}">Se connecter</a> pour commencer.</p>
 {% endif %}
 {% endblock %}

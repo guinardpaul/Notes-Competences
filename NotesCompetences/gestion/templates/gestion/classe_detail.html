@@ -1,13 +1,20 @@
 {% extends 'base.html' %}
 
-{% block title %}
+{% block breadcrumb %}
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="{% url 'gestion:home' %}">Home</a></li>
+			<li class="breadcrumb-item"><a href="{% url 'gestion:classe_list' %}">Liste des classes</a></li>
+			<li class="breadcrumb-item">{{classe.nom}}</li>
+		</ol>
+	</nav>
 {% endblock %}
 
 {% block content %}
 <div class="row">
 	<div class="col-sm-4">
 		<div class="card">
-			<div class="card-header">Informations</div>
+			<div class="card-header">Classe</div>
 			<div class="card-body">
 				<div>
 					<label>Nom classe :</label>
@@ -23,7 +30,7 @@
 	<div class="col-sm-8">
 		{% if eleve_list %}
 		<table class="table table-hover table-responsive">
-			<caption style="caption-side: top;text-align: center;">Liste des élèves</caption>
+			<caption class="caption-table">Elèves <a class="btn btn-outline-primary" href="{% url 'gestion:add_eleve' %}">Ajouter élève</a></caption>
 			<thead>
 				<tr>
 					<th>Nom</th>
@@ -47,9 +54,9 @@
 				{% endfor %}
 			</tbody>
 		</table>
-{% else %}
-<p>Aucune donnée à afficher</p>
-{% endif %}
+		{% else %}
+		<p>Cette classe n'a aucun élève. <a href="{% url 'gestion:add_eleve' %}">Ajouter un élève</a></p>
+		{% endif %}
 	</div>
 </div>
 {% endblock %}

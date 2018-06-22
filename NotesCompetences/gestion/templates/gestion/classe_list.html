@@ -1,13 +1,18 @@
 {% extends 'base.html' %}
 
-{% block title %}
-
+{% block breadcrumb %}
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="{% url 'gestion:home' %}">Home</a></li>
+			<li class="breadcrumb-item">Liste des classes</li>
+		</ol>
+	</nav>
 {% endblock %}
-{% block content %}
 
+{% block content %}
 {% if classe_list %}
 <table class="table table-hover table-responsive">
-	<caption style="caption-side: top; text-align: center;">Liste des classes   <a class="btn btn-info" href="{% url 'gestion:add_classe' %}">Ajouter classe</a></caption>
+	<caption class="caption-table">Liste des classes   <a class="btn btn-outline-primary" href="{% url 'gestion:add_classe' %}">Ajouter classe</a></caption>
 	<thead>
 		<tr>
 			<th>Nom</th>

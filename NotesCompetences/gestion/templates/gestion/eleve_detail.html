@@ -1,14 +1,21 @@
 {% extends 'base.html' %}
 
-{% block title %}
-<h3>Eleve</h3>
+{% block breadcrumb %}
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="{% url 'gestion:home' %}">Home</a></li>
+			<li class="breadcrumb-item"><a href="{% url 'gestion:classe_list' %}">Liste des classes</a></li>
+			<li class="breadcrumb-item"><a href="{% url 'gestion:classe_detail' classe.id %}">{{classe.nom}}</a></li>
+			<li class="breadcrumb-item">{{eleve.nom}} {{eleve.prenom}}</li>
+		</ol>
+	</nav>
 {% endblock %}
 
 {% block content %}
 <div class="row">
 	<div class="col-sm-4">
 		<div class="card">
-			<div class="card-header">Informations</div>
+			<div class="card-header">Eleve</div>
 			<div class="card-body">
 				<div>
 					<label>Nom :</label>

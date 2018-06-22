@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="{% url 'gestion:home' %}">Home</a></li>
+			<li class="breadcrumb-item">Liste des domaines - {{cycle}}</li>
+		</ol>
+	</nav>
+{% endblock %}
+
+{% block content %}
+{% if domaine_list %}
+<table class="table table-hover table-responsive">
+	<caption class="caption-table">Domaines - {{cycle}}   <a class="btn btn-outline-primary" href="{% url 'gestion:add_classe' %}">Ajouter domaine</a></caption>
+	<thead>
+		<tr>
+			<th>ref</th>
+			<th>description</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for domaine in domaine_list %}
+			<tr>
+				<td>{{domaine.ref}}</td>
+				<td>{{domaine.description}}</td>
+				<td>
+					<div class="btn-group">
+						<a class="btn btn-sm btn-primary" href="{% url 'gestion:classe_detail' domaine.id %}">Consulter</a>
+						<a class="btn btn-sm btn-warning" href="{% url 'gestion:update_classe' domaine.id %}">Modifier</a>
+						<a class="btn btn-sm btn-danger" href="{% url 'gestion:delete_classe' domaine.id %}">Supprimer</a>
+					</div>
+				</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% else %}
+<p>Aucune donnée à afficher</p>
+{% endif %}
+{% endblock %}

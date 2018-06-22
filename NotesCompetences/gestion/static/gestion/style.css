@@ -11,3 +11,8 @@
 .bold-text {
 	font-weight: bolder;
 }
+
+.caption-table {
+	caption-side: top;
+	text-align: center;
+}
