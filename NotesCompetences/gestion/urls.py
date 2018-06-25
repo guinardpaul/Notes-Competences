@@ -21,7 +21,7 @@ urlpatterns = [
     path('domaine/cycle3', views.DomaineCycle3ListView.as_view(), name="domaine_list_cycle3"),
     path('domaine/cycle4', views.DomaineCycle4ListView.as_view(), name="domaine_list_cycle4"),
     # Competence urls
-    
+    path('domaine/detail/<int:pk>', views.DomaineDetail.as_view(), name="domaine_detail"),
     # Login
     #path('login/', views.login, name="login"),
 ]

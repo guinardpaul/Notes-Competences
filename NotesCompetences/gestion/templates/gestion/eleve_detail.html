@@ -3,7 +3,7 @@
 {% block breadcrumb %}
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="{% url 'gestion:home' %}">Home</a></li>
+			<li class="breadcrumb-item"><a href="{% url 'gestion:home' %}">Accueil</a></li>
 			<li class="breadcrumb-item"><a href="{% url 'gestion:classe_list' %}">Liste des classes</a></li>
 			<li class="breadcrumb-item"><a href="{% url 'gestion:classe_detail' classe.id %}">{{classe.nom}}</a></li>
 			<li class="breadcrumb-item">{{eleve.nom}} {{eleve.prenom}}</li>

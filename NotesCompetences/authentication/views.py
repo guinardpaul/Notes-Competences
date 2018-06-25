@@ -5,7 +5,13 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import View, FormView, RedirectView
 from django.contrib.auth import views as auth_views
 from .forms import SignUpForm
+
 # Create your views here.
+def profileView(request):
+	return render(request, 'authentication/profile.html')
+
+
+# NOT USED
 class GuestOnlyView(View):
     def dispatch(self, request, *args, **kwargs):
         # Redirect to the index page if the user already authenticated

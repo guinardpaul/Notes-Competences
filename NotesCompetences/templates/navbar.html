@@ -9,6 +9,7 @@
 		    <!-- <li class="nav-item active">
 		        <a class="nav-link" href="/">Accueil<span class="sr-only">(current)</span></a>
 		    </li> -->
+		    {% if user.is_authenticated %}
 		    <li class="nav-item">
 				<a class="nav-link" href="{% url 'gestion:classe_list' %}">Classes</a>
 			</li>
@@ -25,12 +26,13 @@
 		    <li class="nav-item">
 		        <a class="nav-link" href="#">Résultats</a>
 		   	</li>
-		   <!-- <li class="nav-item">
-		        <a class="nav-link disabled" href="#">Disabled</a>
-		    </li> -->
+		   	{% endif %}
 		</ul>
 		<ul class="navbar-nav nav-right">
 			{% if user.is_authenticated %}
+			<li class="nav-item">
+				<a class="nav-link" href="{% url 'authentication:profile' %}">Compte</a>
+			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="/accounts/logout">Se déconnecter</a>
 			</li>

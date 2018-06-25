@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>Domaine Details</h3>
+<div class="row">
+	<div class="col-sm-6">
+		<h4>Liste sous-domaines</h4>
+		<ul>
+			{% for d in sous_domaines %}
+			<li>{{d.ref}} {{d.description}}</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="col-sm-6">
+		<h4>Liste compétences</h4>
+		<ul>
+			{% for c in sous_competences %}
+			<li>{{c.ref}} {{c.description}}</li>
+			{% endfor %}
+		</ul>
+	</div>
+</div>
+{% endblock %}

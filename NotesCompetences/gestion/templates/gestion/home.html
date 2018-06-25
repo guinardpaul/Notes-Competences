@@ -5,8 +5,10 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-<p>Bonjour {{user}}. Heureux de vous revoir.</p>
+	<p>Bonjour <strong>{{user}}</strong>. Heureux de vous revoir.</p>
+	{% include 'app_description.html' %}
 {% else %}
-<p><a href="{% url 'authentication:sign-up' %}">Se connecter</a> pour commencer.</p>
+	{% include 'app_description.html' %}
+	<p><a href="/accounts/login">Se connecter</a> pour commencer.</p>
 {% endif %}
 {% endblock %}

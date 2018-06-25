@@ -1,11 +1,35 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
 
 {% block content %}
-<form action="" method="post">
+{% if form.errors %}
+	<p>Erreur durant l'authentification. Vérifiez votre username et mot de passe.</p>
+{% endif %} 
+{% if next %}
+	{% if user.is_authenticated %}
+		<p>Votre compte n'a pas accés à cette page. Si vous pensez que c'est une erreur, contactez l'administrateur.</p>
+	{% else %}
+		<p>Vous devez être connecté pour accéder à cette page.</p>
+	{% endif %} 
+{% endif %}
+
+<form method="post" action="{% url 'login' %}">
 	{% csrf_token %}
 	<table>
-		{{form.as_table}}
+		<tr>
+			<td>{{ form.username.label_tag }}</td>
+			<td>{{ form.username }}</td>
+		</tr>
+		<tr>
+			<td>{{ form.password.label_tag }}</td>
+			<td>{{ form.password }}</td>
+		</tr>
 	</table>
-	<input type="submit" class="btn btn-success" value="Sauver" />
+	<input type="submit" class="btn btn-success" value="Se connecter" />
+	<input type="hidden" name="next" value="{{ next }}" />
 </form>
+
+{# Assumes you setup the password_reset view in your URLconf #}
+<p>
+	<a href="{% url 'password_reset' %}">Mot de passe perdu ?</a>
+</p>
 {% endblock %}

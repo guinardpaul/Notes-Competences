@@ -10,6 +10,7 @@ from .models import Classe, Eleve, Domaine, Competence
 # CLASSE Views
 @method_decorator(login_required, name='dispatch')
 class ClasseListView(generic.ListView):
+	""" Affiche la liste des classes """
 	template_name = 'gestion/classe_list.html'
 	context_object_name = 'classe_list'
 
@@ -18,6 +19,7 @@ class ClasseListView(generic.ListView):
 
 @method_decorator(login_required, name='dispatch')
 class ClasseDetail(generic.DetailView):
+	""" Detail d'une classe avec les eleves """
 	model = Classe
 	template_name = 'gestion/classe_detail.html'
 
@@ -28,23 +30,27 @@ class ClasseDetail(generic.DetailView):
 
 @method_decorator(login_required, name='dispatch')
 class ClasseCreate(generic.edit.CreateView):
+	""" Create Classe """
 	model = Classe
 	fields = ['nom', 'cycle']
 
 @method_decorator(login_required, name='dispatch')
 class ClasseUpdate(generic.edit.UpdateView):
+	""" Update Classe """
 	model = Classe
 	fields = ['nom', 'cycle']
 	template_name_suffix = '_update_form'
 
 @method_decorator(login_required, name='dispatch')
 class ClasseDelete(generic.edit.DeleteView):
+	""" Delete Classe """
 	model = Classe
 	success_url = reverse_lazy('gestion:classe_list')
 
 # ELEVE Views
 @method_decorator(login_required, name='dispatch')
 class EleveDetail(generic.DetailView):
+	""" Detail Eleve view """
 	model = Eleve
 	template_name = 'gestion/eleve_detail.html'
 
@@ -55,25 +61,26 @@ class EleveDetail(generic.DetailView):
 
 @method_decorator(login_required, name='dispatch')
 class EleveCreate(generic.edit.CreateView):
+	""" Create Eleve """
 	model = Eleve
 	fields = ['nom', 'prenom', 'classe']
 
 @method_decorator(login_required, name='dispatch')
 class EleveUpdate(generic.edit.UpdateView):
+	""" Update Eleve """
 	model = Eleve
 	fields = ['nom', 'prenom', 'classe']
 	template_name_suffix = '_update_form'
 
 @method_decorator(login_required, name='dispatch')
 class EleveDelete(generic.edit.DeleteView):
+	""" Delete Eleve """
 	model = Eleve
 	success_url = reverse_lazy('gestion:classe_detail')
 
-def login(request):
-	pass
-
 @method_decorator(login_required, name='dispatch')
 class DomaineCycle3ListView(generic.ListView):
+	""" Liste des domaines du cycle 3 """
 	model = Domaine
 	context_object_name = 'domaine_list'
 
@@ -87,6 +94,7 @@ class DomaineCycle3ListView(generic.ListView):
 
 @method_decorator(login_required, name='dispatch')
 class DomaineCycle4ListView(generic.ListView):
+	""" Liste des domaines du cycle 4 """
 	model = Domaine
 	context_object_name = 'domaine_list'
 
@@ -98,10 +106,18 @@ class DomaineCycle4ListView(generic.ListView):
 		context['cycle'] = "Cycle 4"
 		return context
 
+class DomaineDetail(generic.DetailView):
+	model = Domaine
+	template_name = "gestion/domaine_detail.html"
+
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['sous_domaines'] = Competence.objects.filter(ref__startswith="D", domaine_id=context['domaine'].pk)
+		context['sous_competences'] = Competence.objects.filter(ref__startswith="CT", domaine_id=context['domaine'].pk)
+		return context
+
 def homeView(request):
-	context = {
-		'utilisateur': 'Marie-Paule'
-	}
+	""" Home view """
 	return render(request, 'gestion/home.html')
 
 # class EleveListView(generic.ListView):
