@@ -18,6 +18,24 @@
 			<li>{{c.ref}} {{c.description}}</li>
 			{% endfor %}
 		</ul>
+		<br/><hr/>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Référence</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for c in domaine_list %}
+					<tr>
+						<td>{{c.ref}}</td>
+						<td>{{c.description}}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+			
+		</table>
 	</div>
 </div>
 {% endblock %}

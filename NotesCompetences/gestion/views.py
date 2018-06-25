@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
 from .models import Classe, Eleve, Domaine, Competence
-
+from itertools import chain
 # Create your views here.
 # CLASSE Views
 @method_decorator(login_required, name='dispatch')
@@ -112,6 +112,27 @@ class DomaineDetail(generic.DetailView):
 
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
+		domaine_list = []
+		sous_domaines = Competence.objects.filter(ref__startswith="D", domaine_id=context['domaine'].pk)
+		print('Sous-domaines :%s' % sous_domaines)
+		if len(sous_domaines) > 0:
+			print('boucle')
+			for s in sous_domaines:
+				domaine_list.append(s)
+				# Changer pk du domaine par pk du sous-domaines.
+				# Nécessite de changer la facon d'enregistrer les models
+				competences = Competence.objects.filter(ref__startswith="CT", domaine_id=context['domaine'].pk)
+				# domaine_list=list(chain((s,competences)))
+				for c in competences:
+					domaine_list.append(c)
+
+				print('domaine_list %s' % domaine_list)
+		else:
+			competences = Competence.objects.filter(ref__startswith="CT", domaine_id=context['domaine'].pk)
+			domaine_list=(competences)
+
+		print('domaine_list: %s' % domaine_list)
+		context['domaine_list'] = domaine_list
 		context['sous_domaines'] = Competence.objects.filter(ref__startswith="D", domaine_id=context['domaine'].pk)
 		context['sous_competences'] = Competence.objects.filter(ref__startswith="CT", domaine_id=context['domaine'].pk)
 		return context
