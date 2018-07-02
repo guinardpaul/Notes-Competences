@@ -3,6 +3,6 @@
 <form method="post">{% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Modifier" />
-    <a class="btn btn-default" href="{% url 'gestion:classe_list' %}">Annuler</a>
+    <a class="btn btn-default" href="{% url 'gestion:domaine_list' cycle=urlCycle %}">Annuler</a>
 </form>
 {% endblock %}

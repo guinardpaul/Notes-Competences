@@ -33,7 +33,7 @@
 	</div>
 	<div class="col-sm-8">
 		<table class="table table-hover table-responsive">
-			<caption class="caption-table">Compétence du domaine {{domaine.ref}}   <a class="btn btn-outline-primary" href="{% url 'gestion:add_domaine' cycle=urlCycle  %}">Ajouter sous domaine</a>  <a class="btn btn-outline-primary" href="{% url 'gestion:add_competence' cycle=urlCycle  %}">Ajouter compétence</a></caption>
+			<caption class="caption-table">Compétence du domaine {{domaine.ref}}   <a class="btn btn-outline-primary" href="{% url 'gestion:add_sous_domaine' cycle=urlCycle domaine_id=domaine.id  %}">Ajouter sous domaine</a>  <a class="btn btn-outline-primary" href="{% url 'gestion:add_competence' cycle=urlCycle domaine_id=domaine.id  %}">Ajouter compétence</a></caption>
 			<thead>
 				<tr>
 					<th>Référence</th>

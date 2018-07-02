@@ -12,7 +12,7 @@
 {% block content %}
 {% if domaine_list %}
 <table class="table table-hover table-responsive">
-	<caption class="caption-table">Domaines - {{cycle}}   <a class="btn btn-outline-primary" href="{% url 'gestion:add_domaine' cycle='cycle3'  %}">Ajouter domaine</a></caption>
+	<caption class="caption-table">Domaines - {{cycle}}   <a class="btn btn-outline-primary" href="{% url 'gestion:add_domaine' cycle=urlCycle  %}">Ajouter domaine</a></caption>
 	<thead>
 		<tr>
 			<th>ref</th>

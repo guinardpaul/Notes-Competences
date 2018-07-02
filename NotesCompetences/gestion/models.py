@@ -35,13 +35,16 @@ class Domaine(models.Model):
 	ref = models.CharField(max_length=10)
 	description = models.TextField()
 	cycle = models.CharField(max_length=7, choices=CYCLE)
-	sous_domaine = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, default=-1, null=True)
+	sous_domaine = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, default=None, null=True)
 
 	class meta:
 		unique_together = ('ref', 'cycle')
 
 	def get_absolute_url(self):
-		return reverse('gestion:domaine_detail', kwargs={ 'pk': self.pk })
+		if self.sous_domaine != None:
+			return reverse('gestion:domaine_detail', kwargs={ 'pk': self.sous_domaine.id })
+		else:
+			return reverse('gestion:domaine_detail', kwargs={ 'pk': self.pk })
 
 	def __str__(self):
 		return self.ref + " - " + self.description
@@ -51,13 +54,21 @@ class Competence(models.Model):
 	ref = models.CharField(max_length=10)
 	description = models.TextField()
 	cycle = models.CharField(max_length=7, choices=CYCLE)
-	domaine = models.ForeignKey(Domaine, on_delete=models.CASCADE, blank=True, default=-1, null=True)
+	domaine = models.ForeignKey(Domaine, on_delete=models.CASCADE)
 
 	class meta:
 		unique_together = ('ref', 'cycle')
 
 	def get_absolute_url(self):
-		return reverse('gestion:domaine_detail', kwargs={ 'pk': self.pk })
+		redirect_domaine = None
+		domaine = Domaine.objects.get(pk=self.domaine.id)
+
+		if domaine.sous_domaine != None:
+			redirect_domaine = Domaine.objects.get(pk=domaine.sous_domaine.id)
+		else:
+			redirect_domaine = domaine
+		
+		return reverse('gestion:domaine_detail', kwargs={ 'pk': redirect_domaine.id })
 	
 	def __str__(self):
 		return self.ref

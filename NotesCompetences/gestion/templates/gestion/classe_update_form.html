@@ -3,6 +3,5 @@
 <form method="post">{% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Modifier" />
-    <a class="btn btn-default" href="{% url 'gestion:classe_list' %}">Annuler</a>
 </form>
 {% endblock %}
