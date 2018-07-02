@@ -82,33 +82,33 @@ INSERT INTO gestion_domaine (id, ref, description, cycle) VALUES
 (19, "D4", "les systèmes naturels et les systèmes techniques", "Cycle 3");
 
 -- Sous_domaine 1
-INSERT INTO gestion_competence (id, ref, description, cycle, domaine_id) VALUES
+INSERT INTO gestion_domaine (id, ref, description, cycle, sous_domaine_id) VALUES
 (20, "D4.1", "Pratiquer des démarches scientifiques et technologiques", "Cycle 3", 19);
 -- gestion_competence domaine 4-sous_domaine 1
 INSERT INTO gestion_competence (id, ref, description, cycle, domaine_id) VALUES
-(21, "CT 4.1", "Proposer avec l’aide du professeur, une démarche pour résoudre un problème ou répondre à une question de nature scientifique ou technologique.", "Cycle 3", 19),
-(22, "CT 4.2", "Formuler une question ou une problématique scientifique ou technologique simple", "Cycle 3", 19),
-(23, "CT 4.3", "Proposer une ou des hypothèses pour répondre à une question ou un problème", "Cycle 3", 19),
-(24, "CT 4.4", "Proposer des expériences simples pour tester une hypothèse", "Cycle 3", 19),
-(25, "CT 4.5", "Interpréter un résultat, en tirer une conclusion", "Cycle 3", 19),
-(26, "CT 4.6", "Formaliser une partie de sa recherche sous une forme écrite ou orale.", "Cycle 3", 19);
+(21, "CT 4.1", "Proposer avec l’aide du professeur, une démarche pour résoudre un problème ou répondre à une question de nature scientifique ou technologique.", "Cycle 3", 20),
+(22, "CT 4.2", "Formuler une question ou une problématique scientifique ou technologique simple", "Cycle 3", 20),
+(23, "CT 4.3", "Proposer une ou des hypothèses pour répondre à une question ou un problème", "Cycle 3", 20),
+(24, "CT 4.4", "Proposer des expériences simples pour tester une hypothèse", "Cycle 3", 20),
+(25, "CT 4.5", "Interpréter un résultat, en tirer une conclusion", "Cycle 3", 20),
+(26, "CT 4.6", "Formaliser une partie de sa recherche sous une forme écrite ou orale.", "Cycle 3", 20);
 
 -- Sous_domaine 2
-INSERT INTO gestion_competence (id, ref, description, cycle, domaine_id) VALUES
+INSERT INTO gestion_domaine (id, ref, description, cycle, sous_domaine_id) VALUES
 (27, "D4.2", "Conception, création, réalisation", "Cycle 3", 19);
 -- gestion_competence domaine 4-sous_domaine 2
 INSERT INTO gestion_competence (id, ref, description, cycle, domaine_id) VALUES
-(28, "CT 4.7", "Identifier les évolutions des besoins et des objets techniques dans leur contexte.", "Cycle 3", 19),
-(29, "CT 4.8", "Identifier les principales familles de matériaux.", "Cycle 3", 19),
-(30, "CT 4.9", "Décrire le fonctionnement d’objets techniques, leurs fonctions et leurs composants.", "Cycle 3", 19),
-(31, "CT 4.10", "Réaliser en équipe tout ou une partie d’un objet technique répondant à un besoin.", "Cycle 3", 19);
+(28, "CT 4.7", "Identifier les évolutions des besoins et des objets techniques dans leur contexte.", "Cycle 3", 27),
+(29, "CT 4.8", "Identifier les principales familles de matériaux.", "Cycle 3", 27),
+(30, "CT 4.9", "Décrire le fonctionnement d’objets techniques, leurs fonctions et leurs composants.", "Cycle 3", 27),
+(31, "CT 4.10", "Réaliser en équipe tout ou une partie d’un objet technique répondant à un besoin.", "Cycle 3", 27);
 
 -- Sous_domaine 3
-INSERT INTO gestion_competence (id, ref, description, cycle, domaine_id) VALUES
+INSERT INTO gestion_domaine (id, ref, description, cycle, sous_domaine_id) VALUES
 (32, "D4.3", "Mettre en pratique des comportements simples respectueux des autres, de l'environnement, de sa santé", "Cycle 3", 19);
 -- gestion_competence domaine 4-sous_domaine 3
 INSERT INTO gestion_competence (id, ref, description, cycle, domaine_id) VALUES
-(33, "CT 4.11", "Appliquer les consignes, respecter les règles relatives à la sécurité et au respect de la personne et de l'environnement.", "Cycle 3", 19);
+(33, "CT 4.11", "Appliquer les consignes, respecter les règles relatives à la sécurité et au respect de la personne et de l'environnement.", "Cycle 3", 32);
 
 -- domaine 5
 INSERT INTO gestion_domaine (id, ref, description, cycle) VALUES
@@ -137,30 +137,30 @@ INSERT INTO gestion_domaine (id, ref, description, cycle) VALUES
 (45, "D2", "les méthodes et outils pour apprendre", "Cycle 4");
 
 -- sous_domaine 1
-INSERT INTO gestion_competence (id, ref, description, cycle, domaine_id) VALUES
+INSERT INTO gestion_domaine (id, ref, description, cycle, sous_domaine_id) VALUES
 (46, "D2.1", "Organiser son travail personnel", "Cycle 4", 45);
 -- gestion_competence domaine 2 - sous_domaine 1
 INSERT INTO gestion_competence (id, ref, description, cycle, domaine_id) VALUES
-(47, "CT 2.1", "Anticiper, gérer, planifier, se constituer des outils personnels.Utiliser des outils numériques pour communiquer des résultats en respectant les règles de base, enregistrement, intégration de médias, collaboration.", "Cycle 4", 45);
+(47, "CT 2.1", "Anticiper, gérer, planifier, se constituer des outils personnels.Utiliser des outils numériques pour communiquer des résultats en respectant les règles de base, enregistrement, intégration de médias, collaboration.", "Cycle 4", 46);
 
 -- sous_domaine 2
-INSERT INTO gestion_competence (id, ref, description, cycle, domaine_id) VALUES
+INSERT INTO gestion_domaine (id, ref, description, cycle, sous_domaine_id) VALUES
 (48, "D2.2", "Coopération et réalisation de projet.", "Cycle 4", 45);
 -- gestion_competence domaine 2 - sous_domaine 2
 INSERT INTO gestion_competence (id, ref, description, cycle, domaine_id) VALUES
-(49, "CT 2.2", "Savoir gérer un projet", "Cycle 4", 45),
-(50, "CT 2.3", "Utiliser des outils numériques", "Cycle 4", 45),
-(51, "CT 2.4", "Traiter les informations collectées, construire des connaissances à partir des informations collectées.", "Cycle 4", 45),
-(52, "CT 2.5", "Choisir ou utiliser le matériel adapté pour mener une observation, effectuer une mesure, réaliser une expérience ou une production.  Utiliser les bonnes unités.", "Cycle 4", 45),
-(53, "CT 2.6", "Organiser seul ou en groupe un espace de réalisation expérimentale.", "Cycle 4", 45);
+(49, "CT 2.2", "Savoir gérer un projet", "Cycle 4", 48),
+(50, "CT 2.3", "Utiliser des outils numériques", "Cycle 4", 48),
+(51, "CT 2.4", "Traiter les informations collectées, construire des connaissances à partir des informations collectées.", "Cycle 4", 48),
+(52, "CT 2.5", "Choisir ou utiliser le matériel adapté pour mener une observation, effectuer une mesure, réaliser une expérience ou une production.  Utiliser les bonnes unités.", "Cycle 4", 48),
+(53, "CT 2.6", "Organiser seul ou en groupe un espace de réalisation expérimentale.", "Cycle 4", 48);
 
 -- sous_domaine 3
-INSERT INTO gestion_competence (id, ref, description, cycle, domaine_id) VALUES
+INSERT INTO gestion_domaine (id, ref, description, cycle, sous_domaine_id) VALUES
 (54, "D2.3", "S’approprier des outils et méthodes", "Cycle 4", 45);
 -- gestion_competence domaine 2 - sous_domaine 3
 INSERT INTO gestion_competence (id, ref, description, cycle, domaine_id) VALUES
-(55, "CT 2.7", "Exprimer sa pensée à l’aide d’outils de description adaptés : croquis, schémas, graphes, diagrammes, tableaux (représentations non normées).", "Cycle 4", 45),
-(56, "CT 2.8", "Présenter à l’oral et à l’aide de supports numériques multimédia des solutions techniques au moment des revues de projet.", "Cycle 4", 45);
+(55, "CT 2.7", "Exprimer sa pensée à l’aide d’outils de description adaptés : croquis, schémas, graphes, diagrammes, tableaux (représentations non normées).", "Cycle 4", 54),
+(56, "CT 2.8", "Présenter à l’oral et à l’aide de supports numériques multimédia des solutions techniques au moment des revues de projet.", "Cycle 4", 54);
 
 -- domaine 3
 INSERT INTO gestion_domaine (id, ref, description, cycle) VALUES
@@ -177,25 +177,25 @@ INSERT INTO gestion_domaine (id, ref, description, cycle) VALUES
 (62, "D4", "les systèmes naturels et les systèmes techniques", "Cycle 4");
 
 -- sous_domaine 1
-INSERT INTO gestion_competence (id, ref, description, cycle, domaine_id) VALUES
+INSERT INTO gestion_domaine (id, ref, description, cycle, sous_domaine_id) VALUES
 (63, "D4.1", "Pratiquer des démarches scientifiques et technologiques", "Cycle 4", 62);
 -- gestion_competence domaine 4 - sous_domaine 1
 INSERT INTO gestion_competence (id, ref, description, cycle, domaine_id) VALUES
-(64, "CT 4.1", "Savoir mener une démarche d’investigation.", "Cycle 4", 62),
-(65, "CT 4.2", "Communiquer des résultats.", "Cycle 4", 62),
-(66, "CT 4.3", "Interpréter ses résultats et rédiger une conclusion.", "Cycle 4", 62),
-(67, "CT 4.4", "Imaginer, synthétiser, formaliser et respecter une procédure, un protocole.", "Cycle 4", 62);
+(64, "CT 4.1", "Savoir mener une démarche d’investigation.", "Cycle 4", 63),
+(65, "CT 4.2", "Communiquer des résultats.", "Cycle 4", 63),
+(66, "CT 4.3", "Interpréter ses résultats et rédiger une conclusion.", "Cycle 4", 63),
+(67, "CT 4.4", "Imaginer, synthétiser, formaliser et respecter une procédure, un protocole.", "Cycle 4", 63);
 
 -- sous_domaine 2
-INSERT INTO gestion_competence (id, ref, description, cycle, domaine_id) VALUES
+INSERT INTO gestion_domaine (id, ref, description, cycle, sous_domaine_id) VALUES
 (68, "D4.2", "Pratiquer des démarches scientifiques et technologiques", "Cycle 4", 62);
 -- gestion_competence domaine 4 - sous_domaine 2
 INSERT INTO gestion_competence (id, ref, description, cycle, domaine_id) VALUES
-(69, "CT 4.5", "Appliquer les consignes, respecter les règles relatives à la sécurité et au respect de la personne et de l'environnement.", "Cycle 4", 62),
-(70, "CT 4.6", "Savoir les relations entre fonctions biologiques et santé.", "Cycle 4", 62),
-(71, "CT 4.7", "Connaitre corps humain, vivant, espèces.", "Cycle 4", 62),
-(72, "CT 4.8", "Connaître univers, matière, biosphère.", "Cycle 4", 62),
-(73, "CT 4.9", "Connaitre énergie, mouvement, force", "Cycle 4", 62);
+(69, "CT 4.5", "Appliquer les consignes, respecter les règles relatives à la sécurité et au respect de la personne et de l'environnement.", "Cycle 4", 68),
+(70, "CT 4.6", "Savoir les relations entre fonctions biologiques et santé.", "Cycle 4", 68),
+(71, "CT 4.7", "Connaitre corps humain, vivant, espèces.", "Cycle 4", 68),
+(72, "CT 4.8", "Connaître univers, matière, biosphère.", "Cycle 4", 68),
+(73, "CT 4.9", "Connaitre énergie, mouvement, force", "Cycle 4", 68);
 
 -- domaine 5
 INSERT INTO gestion_domaine (id, ref, description, cycle) VALUES

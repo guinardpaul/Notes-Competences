@@ -15,7 +15,7 @@
 <div class="row">
 	<div class="col-sm-4">
 		<div class="card">
-			<div class="card-header">Eleve</div>
+			<div class="card-header">Eleve &nbsp;<a class="btn btn-primary" href="{% url 'gestion:update_eleve' eleve.id %}">Modifier</a></div>
 			<div class="card-body">
 				<div>
 					<label>Nom :</label>
@@ -33,7 +33,7 @@
 		</div>
 	</div>
 	<div class="col-sm-8">
-		<h3>Tableau resultats de l'élève</h3>
+		<h3>Résultats</h3>
 	</div>
 </div>
 {% endblock %}

@@ -12,7 +12,7 @@
 {% block content %}
 {% if domaine_list %}
 <table class="table table-hover table-responsive">
-	<caption class="caption-table">Domaines - {{cycle}}   <a class="btn btn-outline-primary" href="{% url 'gestion:add_classe' %}">Ajouter domaine</a></caption>
+	<caption class="caption-table">Domaines - {{cycle}}   <a class="btn btn-outline-primary" href="{% url 'gestion:add_domaine' cycle='cycle3'  %}">Ajouter domaine</a></caption>
 	<thead>
 		<tr>
 			<th>ref</th>
@@ -28,8 +28,8 @@
 				<td>
 					<div class="btn-group">
 						<a class="btn btn-sm btn-primary" href="{% url 'gestion:domaine_detail' domaine.id %}">Consulter</a>
-						<a class="btn btn-sm btn-warning" href="{% url 'gestion:update_classe' domaine.id %}">Modifier</a>
-						<a class="btn btn-sm btn-danger" href="{% url 'gestion:delete_classe' domaine.id %}">Supprimer</a>
+						<a class="btn btn-sm btn-warning" href="{% url 'gestion:update_domaine' cycle=urlCycle pk=domaine.id %}">Modifier</a>
+						<a class="btn btn-sm btn-danger" href="{% url 'gestion:delete_domaine' cycle=urlCycle pk=domaine.id %}">Supprimer</a>
 					</div>
 				</td>
 			</tr>

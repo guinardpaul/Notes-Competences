@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="{% url 'gestion:home' %}">Accueil</a></li>
+			
+			<li class="breadcrumb-item">Ajouter un domaine</li>
+		</ol>
+	</nav>
+{% endblock %}
+
+{% block title %}
+<h3>Ajouter une domaine</h3>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-12 col-md-7 col-lg-7">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<form  action="" method="post">
+						{% csrf_token %}
+						{% include 'gestion/form-template.html' %}
+					    <div class="form-group">
+					    	<div class="col-sm-offset-2 col-sm-10">
+					    		<input type="submit" class="btn btn-success" value="Sauver" />
+					    	
+					    	</div>
+					    </div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

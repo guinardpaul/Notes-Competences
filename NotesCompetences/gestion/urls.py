@@ -18,10 +18,19 @@ urlpatterns = [
     path('eleve/update/<int:pk>', views.EleveUpdate.as_view(), name="update_eleve"),
     path('eleve/delete/<int:pk>', views.EleveDelete.as_view(), name="delete_eleve"),
     # Domaine urls
-    path('domaine/cycle3', views.DomaineCycle3ListView.as_view(), name="domaine_list_cycle3"),
-    path('domaine/cycle4', views.DomaineCycle4ListView.as_view(), name="domaine_list_cycle4"),
+    path('domaine/<slug:cycle>', views.DomaineListView.as_view(), name="domaine_list"),
+    # path('domaine/cycle3', views.DomaineCycle3ListView.as_view(), name="domaine_list_cycle3"),
+    # path('domaine/cycle4', views.DomaineCycle4ListView.as_view(), name="domaine_list_cycle4"),
+    path('domaine/<slug:cycle>/add', views.DomaineCreate.as_view(), name="add_domaine"),
+    path('domaine/<slug:cycle>/update/<int:pk>', views.DomaineUpdate.as_view(), name="update_domaine"),
+    path('domaine/<slug:cycle>/delete/<int:pk>', views.DomaineDelete.as_view(), name="delete_domaine"),
     # Competence urls
     path('domaine/detail/<int:pk>', views.DomaineDetail.as_view(), name="domaine_detail"),
-    # Login
-    #path('login/', views.login, name="login"),
+    path('competence/<slug:cycle>/add', views.CompetenceCreate.as_view(), name="add_competence"),
+    path('competence/<slug:cycle>/update/<int:pk>', views.CompetenceUpdate.as_view(), name="update_competence"),
+    path('competence/<slug:cycle>/delete/<int:pk>', views.CompetenceDelete.as_view(), name="delete_competence"),
+    # Default url for update/delete Domaine - Competence table
+    path('domaine/update/<int:id>', views.domaineCTUpdateRedirect, name="update_domaine_ct"),
+    path('domaine/delete/<int:id>', views.domaineCTDeleteRedirect, name="delete_domaine_ct"),
+    
 ]
