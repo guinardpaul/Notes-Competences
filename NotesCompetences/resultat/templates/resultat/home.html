@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>Résultat Home Page</h3>
+
+<p>Pour ajouter un résultat :</p>
+<ul>
+<li>Select élèves a qui ajouter un résultat</li>
+<li>Dans la vue Detail Eleve -> tableau de toutes les compétences de l'élève (requete par cycle) et on ajoute les résultats dessus</li>
+<hr />OU<hr />
+<li>Ajout générique d'un interrogation et on l'assigne ensuite aux élèves ?</li>
+<li>Interrogation contenant une liste de compétences</li>
+<hr />
+Objet Interrogation/Evaluation:
+<hr />
+<li>cycle</li>
+<li>liste compétences évaluée</li>
+<li>Trimestre</li>
+<hr />
+Objet Resultat:
+<hr />
+<li>ForeignKey Eleve</li>
+<li>ForeignKey Evaluation</li>
+<hr />
+Objet Eleve:
+<hr />
+<li>ForeignKey resultat</li>
+</ul>
+{% endblock %}
