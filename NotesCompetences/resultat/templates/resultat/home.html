@@ -8,10 +8,11 @@
 <li>Select élèves a qui ajouter un résultat</li>
 <li>Dans la vue Detail Eleve -> tableau de toutes les compétences de l'élève (requete par cycle) et on ajoute les résultats dessus</li>
 <hr />OU<hr />
-<li>Ajout générique d'un interrogation et on l'assigne ensuite aux élèves ?</li>
-<li>Interrogation contenant une liste de compétences</li>
+<li>Ajout générique d'une évaluation et on l'assigne ensuite aux élèves</li>
+<li>Evaluation contenant une liste de compétences évaluée</li>
+<li>On ajoute un resultat lié a une evaluation et a l'élève contenant la liste des competences de l'évaluation et où on peut ajouter un resultat à chacune de ces compétences</li>
 <hr />
-Objet Interrogation/Evaluation:
+Objet Evaluation:
 <hr />
 <li>cycle</li>
 <li>liste compétences évaluée</li>
@@ -19,11 +20,15 @@ Objet Interrogation/Evaluation:
 <hr />
 Objet Resultat:
 <hr />
+<li>competence de la liste contenu dans l'evaluation</li>
+<li>Resultat pour cette competence(++, +, +/-, -)</li>
+<li>Resultat pour cette competence(4, 3, 2, 1)</li>
 <li>ForeignKey Eleve</li>
 <li>ForeignKey Evaluation</li>
 <hr />
 Objet Eleve:
 <hr />
 <li>ForeignKey resultat</li>
+<li>...</li>
 </ul>
 {% endblock %}

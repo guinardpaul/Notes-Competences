@@ -7,10 +7,18 @@ CYCLE = (
 		('Cycle 4', 'Cycle 4'),
 		)
 
+class EnumCycle(models.Model):
+	""" enum cycle model """
+	literal = models.CharField(max_length=10)
+	value = models.IntegerField()
+
+	def __str__(self):
+		return self.literal
+
 class Classe(models.Model):
 	""" Classe model. """
 	nom = models.CharField(max_length=5, unique=True)
-	cycle = models.CharField(max_length=7, choices=CYCLE)
+	cycle = models.ForeignKey(EnumCycle, on_delete=models.CASCADE)
 
 	def get_absolute_url(self):
 		return reverse('gestion:classe_detail', kwargs={ 'pk': self.pk })
@@ -34,7 +42,7 @@ class Domaine(models.Model):
 	""" Domaine model. """
 	ref = models.CharField(max_length=10)
 	description = models.TextField()
-	cycle = models.CharField(max_length=7, choices=CYCLE)
+	cycle = models.ForeignKey(EnumCycle, on_delete=models.CASCADE)
 	sous_domaine = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, default=None, null=True)
 
 	class meta:
@@ -53,7 +61,7 @@ class Competence(models.Model):
 	""" Competence model. """
 	ref = models.CharField(max_length=10)
 	description = models.TextField()
-	cycle = models.CharField(max_length=7, choices=CYCLE)
+	cycle = models.ForeignKey(EnumCycle, on_delete=models.CASCADE)
 	domaine = models.ForeignKey(Domaine, on_delete=models.CASCADE)
 
 	class meta:
