@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="{% url 'gestion:home' %}">Accueil</a></li>
+			
+			<li class="breadcrumb-item">Ajouter une Evaluation</li>
+		</ol>
+	</nav>
+{% endblock %}
+
+{% block content %}
+	<form action="" method="post">
+		{% csrf_token %}
+		{% for field in form %}
+	<div class="fieldWrapper">
+		{{ field.errors }}
+        {{ field.label_tag }} {{ field }}
+        {% if field.help_text %}
+        <p class="help">{{ field.help_text|safe }}</p>
+        {% endif %}
+	</div>
+{% endfor %}
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<input type="submit" class="btn btn-success" value="Sauver" />
+			</div>
+		</div>
+	</form>
+{% endblock %}

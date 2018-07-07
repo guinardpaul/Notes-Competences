@@ -5,7 +5,7 @@ from django.urls import reverse_lazy, reverse
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
-from .models import Classe, Eleve, Domaine, Competence
+from .models import Classe, Eleve, Domaine, Competence, EnumCycle
 from .forms import CompetenceForm, SousDomaineForm
 
 # Create your views here.
@@ -104,12 +104,12 @@ class DomaineListView(generic.ListView):
 	def get_queryset(self):
 		cycle = None
 		if self.kwargs['cycle'] == 'cycle3':
-			cycle = 'Cycle 3'
+			cycle = EnumCycle.objects.get(literal='Cycle 3')
 		elif self.kwargs['cycle'] == 'cycle4':
-			cycle = 'Cycle 4'
+			cycle = EnumCycle.objects.get(literal='Cycle 4')
 		else:
 			raise Http404("La page que vous essayez d'atteindre n'existe pas.")
-		return Domaine.objects.filter(cycle=cycle, sous_domaine_id=None).order_by('ref')
+		return Domaine.objects.filter(cycle=cycle.id, sous_domaine_id=None).order_by('ref')
 	
 	# On recupere le cycle et le passe au context
 	def get_context_data(self, **kwargs):
@@ -137,11 +137,11 @@ class DomaineDetail(generic.DetailView):
 		context = super().get_context_data(**kwargs)
 		try:
 			current_domaine = Domaine.objects.get(pk=context['domaine'].id)
-			current_cycle = current_domaine.cycle
+			current_cycle = EnumCycle.objects.get(pk=current_domaine.cycle_id)
 			urlCycle = None
-			if current_cycle == 'Cycle 3':
+			if current_cycle.literal == 'Cycle 3':
 				urlCycle = 'cycle3'
-			elif current_cycle == 'Cycle 4':
+			elif current_cycle.literal == 'Cycle 4':
 				urlCycle = 'cycle4'
 			else:
 				raise Http404("La page que vous essayez d'atteindre n'existe pas.")

@@ -13,7 +13,7 @@ class EnumResultat(models.Model):
 
 class EnumTrimestre(models.Model):
 	""" enum trimestre model """
-	literal = models.CharField(max_length=10)
+	literal = models.CharField(max_length=11)
 	value = models.IntegerField()
 
 	def __str__(self):
@@ -25,6 +25,7 @@ class Evaluation(models.Model):
 	created_at = models.DateField(auto_now=False, auto_now_add=False, default=date.today)
 	trimestre = models.ForeignKey(EnumTrimestre, on_delete=models.CASCADE)
 	cycle = models.ForeignKey(EnumCycle, on_delete=models.CASCADE)
+	competence = models.ManyToManyField(Competence)
 
 	def __str__(self):
 		return self.description

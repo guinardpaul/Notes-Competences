@@ -2,11 +2,6 @@ from django.db import models
 from django.urls import reverse
 
 # Create your models here.
-CYCLE = (
-		('Cycle 3', 'Cycle 3'),
-		('Cycle 4', 'Cycle 4'),
-		)
-
 class EnumCycle(models.Model):
 	""" enum cycle model """
 	literal = models.CharField(max_length=10)
@@ -78,5 +73,7 @@ class Competence(models.Model):
 		
 		return reverse('gestion:domaine_detail', kwargs={ 'pk': redirect_domaine.id })
 	
+	#Truncate description apres X caracteres
 	def __str__(self):
-		return self.ref
+		#objCycle = EnumCycle.objects.get(literal=self.cycle)
+		return self.ref + " - " + self.description
