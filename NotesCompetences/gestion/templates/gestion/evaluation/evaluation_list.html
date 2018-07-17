@@ -3,11 +3,11 @@
 {% block content %}
 <h3>Résultat Home Page</h3>
 Ajouter Evaluation 
-<a class="btn btn-primary" href="{% url 'resultat:add_evaluation' cycle='cycle3' %}">Cycle 3</a>
-<a class="btn btn-primary" href="{% url 'resultat:add_evaluation'  cycle='cycle4' %}">Cycle 4</a>
+<a class="btn btn-primary" href="{% url 'gestion:add_evaluation' cycle='cycle3' %}">Cycle 3</a>
+<a class="btn btn-primary" href="{% url 'gestion:add_evaluation'  cycle='cycle4' %}">Cycle 4</a>
 
 
-{% include 'resultat/evaluation_table.html' %}
+{% include 'gestion/tables/evaluation_table.html' %}
 
 
 <p>Ajouter évaluation par classe ?</p>

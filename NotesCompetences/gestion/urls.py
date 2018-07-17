@@ -35,5 +35,11 @@ urlpatterns = [
     # Default url for update/delete Domaine - Competence table
     path('domaine/update/<int:id>', views.domaineCTUpdateRedirect, name="update_domaine_ct"),
     path('domaine/delete/<int:id>', views.domaineCTDeleteRedirect, name="delete_domaine_ct"),
-    
+    # Evaluation
+    path('evaluation', views.EvaluationList.as_view(), name="evaluation_list"),
+    path('evaluation/add/<slug:cycle>/', views.evaluationCreate, name="add_evaluation"),
+    path('evaluation/update/<int:pk>', views.EvaluationUpdate.as_view(), name="update_evaluation"),
+    path('evaluation/delete/<int:pk>', views.EvaluationDelete.as_view(), name="delete_evaluation"),
+    # Add evaluation to eleve
+    path('eleve/<slug:eleve_id>/add-evaluation/<slug:evaluation_id>', views.addEvaluation.as_view(), name="add_resultat_to_eleve"),    
 ]

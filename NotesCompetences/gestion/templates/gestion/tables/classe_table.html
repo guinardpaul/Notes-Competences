@@ -1,16 +1,3 @@
-{% extends 'base.html' %}
-
-{% block breadcrumb %}
-	<nav aria-label="breadcrumb">
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="{% url 'gestion:home' %}">Accueil</a></li>
-			<li class="breadcrumb-item">Liste des classes</li>
-		</ol>
-	</nav>
-{% endblock %}
-
-{% block content %}
-{% if classe_list %}
 <table class="table table-hover table-responsive">
 	<caption class="caption-table">Liste des classes   <a class="btn btn-outline-primary" href="{% url 'gestion:add_classe' %}">Ajouter classe</a></caption>
 	<thead>
@@ -36,7 +23,3 @@
 		{% endfor %}
 	</tbody>
 </table>
-{% else %}
-<p>Aucune donnée à afficher</p>
-{% endif %}
-{% endblock %}

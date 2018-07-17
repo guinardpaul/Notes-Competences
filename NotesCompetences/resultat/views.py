@@ -10,9 +10,13 @@ from .models import Evaluation
 from gestion.models import EnumCycle
 
 # Create your views here.
+@login_required
 def homeView(request):
-	return render(request, 'resultat/home.html')
+	evaluations = Evaluation.objects.all()
 
+	return render(request, 'resultat/home.html', { 'evaluations': evaluations })
+
+@login_required
 def evaluationCreate(request, cycle):
 	literal_cycle = None
 	if cycle == 'cycle3':
@@ -25,8 +29,6 @@ def evaluationCreate(request, cycle):
 	if request.method == 'POST':
 		form = EvaluationForm(request.POST, cycle=literal_cycle)
 		if form.is_valid():
-			print(form.cleaned_data)
-			form.cleaned_data['cycle'] = literal_cycle
 			new_evaluation = form.save()
 
 			return HttpResponseRedirect('/results')
@@ -34,3 +36,16 @@ def evaluationCreate(request, cycle):
 		form = EvaluationForm(cycle=literal_cycle)
 
 	return render(request, 'resultat/evaluation_form.html', {'form': form, 'cycle': literal_cycle})
+
+@method_decorator(login_required, name='dispatch')
+class EvaluationUpdate(generic.edit.UpdateView):
+	""" Update Evaluation """
+	model = Evaluation
+	fields = ['description', 'trimestre', 'classe', 'competence', 'cycle']
+	template_name_suffix = '_update_form'
+
+@method_decorator(login_required, name='dispatch')
+class EvaluationDelete(generic.edit.DeleteView):
+	""" Delete Evaluation """
+	model = Evaluation
+	success_url = reverse_lazy('resultat:home')

@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method="post">{% csrf_token %}
+    <p>Etes-vous sûr de vouloir supprimer "{{ object }}"?</p>
+    <input type="submit" value="Confirmer" />
+    <a class="btn btn-default" href="{% url 'gestion:classe_list' %}">Annuler</a>
+</form>
+{% endblock %}

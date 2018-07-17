@@ -32,30 +32,7 @@
 		</div>
 	</div>
 	<div class="col-sm-8">
-		<table class="table table-hover table-responsive">
-			<caption class="caption-table">Compétence du domaine {{domaine.ref}}   <a class="btn btn-outline-primary" href="{% url 'gestion:add_sous_domaine' cycle=urlCycle domaine_id=domaine.id  %}">Ajouter sous domaine</a>  <a class="btn btn-outline-primary" href="{% url 'gestion:add_competence' cycle=urlCycle domaine_id=domaine.id  %}">Ajouter compétence</a></caption>
-			<thead>
-				<tr>
-					<th>Référence</th>
-					<th>Description</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for c in domaine_CT_list %}
-					<tr>
-						<td>{{c.ref}}</td>
-						<td>{{c.description}}</td>
-						<td>
-							<div class="btn-group">
-								<a class="btn btn-sm btn-warning" href="{% url 'gestion:update_domaine_ct' c.id %}">Modifier</a>
-								<a class="btn btn-sm btn-danger" href="{% url 'gestion:delete_domaine_ct' c.id %}">Supprimer</a>
-							</div>
-						</td>
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
+		{% include 'gestion/tables/competence_table.html' %}
 	</div>
 </div>
 

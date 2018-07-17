@@ -1,10 +1,19 @@
 from django.db import models
 from django.urls import reverse
+from datetime import date
 
 # Create your models here.
 class EnumCycle(models.Model):
 	""" enum cycle model """
 	literal = models.CharField(max_length=10)
+	value = models.IntegerField()
+
+	def __str__(self):
+		return self.literal
+
+class EnumTrimestre(models.Model):
+	""" enum trimestre model """
+	literal = models.CharField(max_length=11)
 	value = models.IntegerField()
 
 	def __str__(self):
@@ -77,3 +86,18 @@ class Competence(models.Model):
 	def __str__(self):
 		#objCycle = EnumCycle.objects.get(literal=self.cycle)
 		return self.ref + " - " + self.description
+
+class Evaluation(models.Model):
+	""" Evaluation model """
+	description = models.CharField(max_length=200)
+	created_at = models.DateField(auto_now=False, auto_now_add=False, default=date.today)
+	trimestre = models.ForeignKey(EnumTrimestre, on_delete=models.CASCADE)
+	cycle = models.ForeignKey(EnumCycle, on_delete=models.CASCADE)
+	competence = models.ManyToManyField(Competence)
+	classe = models.ForeignKey(Classe, on_delete=models.CASCADE)
+
+	def get_absolute_url(self):
+		return reverse('resultat:home')
+
+	def __str__(self):
+		return self.description

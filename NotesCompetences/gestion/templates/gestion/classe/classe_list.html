@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="{% url 'gestion:home' %}">Accueil</a></li>
+			<li class="breadcrumb-item">Liste des classes</li>
+		</ol>
+	</nav>
+{% endblock %}
+
+{% block content %}
+{% if classe_list %}
+{% include 'gestion/tables/classe_table.html' %}
+{% else %}
+<p>Aucune donnée à afficher</p>
+{% endif %}
+{% endblock %}

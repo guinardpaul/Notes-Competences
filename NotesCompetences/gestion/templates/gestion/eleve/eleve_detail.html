@@ -33,9 +33,38 @@
 		</div>
 	</div>
 	<div class="col-sm-8">
-		<h3>Résultats</h3>
-		<p>Bouton ajout interrogation à l'élève. Interrogation contenant (cycle, liste de compétences)</p>
-		<p>Une fois qu'une interrogation est assigné a l'élève. Possibilité de modifier les résultats de l'élèves pour cet interrogation.</p>
+		<h3>Evaluations</h3>
+		<a class="btn btn-primary" href="{% url 'resultat:add_evaluation' cycle='Cycle3' %}">Ajouter une évaluation</a>
+
+		<table class="table table-hover table-responsive">
+			<caption class="caption-table">Evaluations</caption>
+			<thead>
+				<tr>
+					<th>Description</th>
+					<th>Trimestre</th>
+					<th>Cycle</th>
+					<th>Classe</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for eval in evaluation_list %}
+				<tr>
+					<td>{{eval.description}}</td>
+					<td>{{eval.trimestre}}</td>
+					<td>{{eval.cycle}}</td>
+					<td>{{eval.classe}}</td>
+					<td>
+						<a href="{% url 'gestion:add_resultat_to_eleve' eleve_id=eleve.id evaluation_id=eval.id %}">Ajouter résultat</a>
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<p>liste evaluations assignée a l'éleve </p>
+		<p>Bouton ajout evaluation à l'élève. Evaluation contenant (cycle, liste de compétences)</p>
+		<p>Une fois qu'une evaluation est assigné a l'élève. Possibilité de modifier les résultats de l'élèves pour cet evaluation.</p>
 	</div>
 </div>
 {% endblock %}

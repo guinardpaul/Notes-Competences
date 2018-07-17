@@ -5,15 +5,20 @@ from django.urls import reverse_lazy, reverse
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
-from .models import Classe, Eleve, Domaine, Competence, EnumCycle
-from .forms import CompetenceForm, SousDomaineForm
+from .models import Classe, Eleve, Domaine, Competence, EnumCycle, Evaluation, EnumTrimestre
+from resultat.models import Resultat
+from .forms import CompetenceForm, SousDomaineForm, EvaluationForm
 
 # Create your views here.
+def homeView(request):
+	""" Home view """
+	return render(request, 'gestion/home.html')
+
 # CLASSE Views
 @method_decorator(login_required, name='dispatch')
 class ClasseListView(generic.ListView):
 	""" Affiche la liste des classes """
-	template_name = 'gestion/classe_list.html'
+	template_name = 'gestion/classe/classe_list.html'
 	context_object_name = 'classe_list'
 
 	# On recupere la liste des classes
@@ -24,7 +29,7 @@ class ClasseListView(generic.ListView):
 class ClasseDetail(generic.DetailView):
 	""" Detail d'une classe avec les eleves """
 	model = Classe
-	template_name = 'gestion/classe_detail.html'
+	template_name = 'gestion/classe/classe_detail.html'
 
 	# On recupere la liste des eleves de la classe
 	def get_context_data(self, **kwargs):
@@ -41,18 +46,20 @@ class ClasseCreate(generic.edit.CreateView):
 	""" Create Classe """
 	model = Classe
 	fields = ['nom', 'cycle']
+	template_name = 'gestion/classe/classe_form.html'
 
 @method_decorator(login_required, name='dispatch')
 class ClasseUpdate(generic.edit.UpdateView):
 	""" Update Classe """
 	model = Classe
 	fields = ['nom', 'cycle']
-	template_name_suffix = '_update_form'
+	template_name = 'gestion/classe/classe_update_form.html'
 
 @method_decorator(login_required, name='dispatch')
 class ClasseDelete(generic.edit.DeleteView):
 	""" Delete Classe """
 	model = Classe
+	template_name = 'gestion/classe/classe_confirm_delete.html'
 	success_url = reverse_lazy('gestion:classe_list')
 
 # ELEVE Views
@@ -60,16 +67,23 @@ class ClasseDelete(generic.edit.DeleteView):
 class EleveDetail(generic.DetailView):
 	""" Detail Eleve view """
 	model = Eleve
-	template_name = 'gestion/eleve_detail.html'
+	template_name = 'gestion/eleve/eleve_detail.html'
 
 	# On recupere la classe et la passe au context
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
 		try:
-			classe = Classe.objects.get(pk=context['eleve'].classe_id)
+			classe_id = context['eleve'].classe_id
+			print(classe_id)
+			classe = Classe.objects.get(pk=classe_id)
+			evaluation_list = Evaluation.objects.filter(classe_id=classe_id)
+			print(evaluation_list)
 		except Classe.DoesNotExist:
 			raise Http404("L'object auquel vous souhaitez accéder n'existe plus.")
+		except Evaluation.DoesNotExist:
+			raise Http404("L'object auquel vous souhaitez accéder n'existe plus.")
 		context['classe'] = classe
+		context['evaluation_list'] = evaluation_list
 		return context
 
 @method_decorator(login_required, name='dispatch')
@@ -77,28 +91,32 @@ class EleveCreate(generic.edit.CreateView):
 	""" Create Eleve """
 	model = Eleve
 	fields = ['nom', 'prenom', 'classe']
+	template_name = 'gestion/eleve/eleve_form.html'
 
 @method_decorator(login_required, name='dispatch')
 class EleveUpdate(generic.edit.UpdateView):
 	""" Update Eleve """
 	model = Eleve
 	fields = ['nom', 'prenom', 'classe']
-	template_name_suffix = '_update_form'
+	template_name = 'gestion/eleve/eleve_update_form.html'
 
 @method_decorator(login_required, name='dispatch')
 class EleveDelete(generic.edit.DeleteView):
 	""" Delete Eleve """
 	model = Eleve
+	template_name = 'gestion/eleve/eleve_confirm_delete.html'
 
 	# On retourne sur le classe_detail
 	def get_success_url(self):
 		return reverse_lazy('gestion:classe_detail', kwargs={'pk': self.object.classe_id})
 
+# DOMAINE Views
 @method_decorator(login_required, name='dispatch')
 class DomaineListView(generic.ListView):
 	""" Domaine List filtre par cycle """
 	model = Domaine
 	context_object_name = 'domaine_list'
+	template_name = 'gestion/domaine/domaine_list.html'
 
 	# On recupere les domaines filtres par cycle
 	def get_queryset(self):
@@ -130,7 +148,7 @@ class DomaineDetail(generic.DetailView):
 		Affiche le current_domaine, les sous_domaines (si existent) et les competences
 	"""
 	model = Domaine
-	template_name = "gestion/domaine_detail.html"
+	template_name = "gestion/domaine/domaine_detail.html"
 
 	# On recupere le context
 	def get_context_data(self, **kwargs):
@@ -185,6 +203,7 @@ class DomaineCreate(generic.edit.CreateView):
 	""" Create Domaine """
 	model = Domaine
 	fields = ['ref', 'description', 'cycle']
+	template_name = 'gestion/domaine/domaine_form.html'
 
 	# On recupere le cycle et le passe au context
 	def get_context_data(self, **kwargs):
@@ -205,13 +224,14 @@ class DomaineUpdate(generic.edit.UpdateView):
 	""" Update Domaine """
 	model = Domaine
 	fields = ['ref', 'description', 'cycle']
-	template_name_suffix = '_update_form'
+	template_name = 'gestion/domaine/domaine_update_form.html'
 	
 
 @method_decorator(login_required, name='dispatch')
 class DomaineDelete(generic.edit.DeleteView):
 	""" Delete Domaine """
 	model = Domaine
+	template_name = 'gestion/domaine/domaine_confirm_delete.html'
 	
 	# On recupere le cycle et le passe au context
 	def get_context_data(self, **kwargs):
@@ -237,6 +257,7 @@ class DomaineDelete(generic.edit.DeleteView):
 
 		return reverse_lazy('gestion:domaine_list', kwargs={ 'cycle': urlCycle })
 
+# COMPETENCE Views
 @method_decorator(login_required, name='dispatch')
 class CompetenceCreate(generic.edit.CreateView):
 	""" 
@@ -264,7 +285,7 @@ class CompetenceUpdate(generic.edit.UpdateView):
 	""" Update Competence """
 	model = Competence
 	fields = ['ref', 'description']
-	template_name_suffix = '_update_form'
+	template_name = 'gestion/competence/competence_update_form.html'
 
 	# On recupere le cycle pour le passer a la vue
 	def get_context_data(self, **kwargs):
@@ -284,6 +305,7 @@ class CompetenceUpdate(generic.edit.UpdateView):
 class CompetenceDelete(generic.edit.DeleteView):
 	""" Delete Competence """
 	model = Competence
+	template_name = 'gestion/competence/competence_confirm_delete.html'
 	
 	# On recupere le cycle pour le passer a la vue
 	def get_context_data(self, **kwargs):
@@ -309,10 +331,6 @@ class CompetenceDelete(generic.edit.DeleteView):
 
 		return reverse_lazy('gestion:domaine_detail', kwargs={ 'pk': domaine.pk })
 
-def homeView(request):
-	""" Home view """
-	return render(request, 'gestion/home.html')
-
 @login_required
 def createCompetence(request, cycle, domaine_id):
 	""" Create competence """
@@ -325,7 +343,7 @@ def createCompetence(request, cycle, domaine_id):
 	else:
 		form = CompetenceForm(domaine_id=domaine_id)
 
-	return render(request, 'gestion/competence_form.html', {'form': form, 'cycle': cycle})
+	return render(request, 'gestion/competence/competence_form.html', {'form': form, 'cycle': cycle})
 
 @login_required
 def createSousDomaine(request, cycle, domaine_id):
@@ -340,7 +358,7 @@ def createSousDomaine(request, cycle, domaine_id):
 	else:
 		form = SousDomaineForm(domaine_id=domaine_id)
 
-	return render(request, 'gestion/domaine_form.html', {'form': form, 'cycle': cycle, 'warning_message': warning_message})
+	return render(request, 'gestion/domaine/domaine_form.html', {'form': form, 'cycle': cycle, 'warning_message': warning_message})
 
 @login_required
 def domaineCTUpdateRedirect(request, id):
@@ -397,3 +415,66 @@ def domaineCTDeleteRedirect(request, id):
 		else:
 			cycle = 'cycle3'
 		return redirect('gestion:delete_competence', cycle = cycle, pk = competence.id)
+
+# EVALUATION Views
+@method_decorator(login_required, name='dispatch')
+class AddEvaluation(generic.edit.CreateView):
+	""" NOT USED 
+	Ajout d'évaluation à un élève """
+	model = Resultat
+	fields = ['competence', 'resultat']
+	template_name = 'gestion/evaluation/evaluation_form.html'
+
+	# On recupere la classe pour le passer a la vue
+	# def get_context_data(self, **kwargs):
+	# 	context = super().get_context_data(**kwargs)
+	# 	classe = None
+	# 	print(self)
+	# 	# context['urlCycle'] = self.kwargs['cycle']
+	# 	# context['cycle'] = cycle
+	# 	return context
+
+class EvaluationList(generic.ListView):
+	""" Affiche la liste des classes """
+	template_name = 'gestion/evaluation/evaluation_list.html'
+	context_object_name = 'evaluation_list'
+
+	# On recupere la liste des classes
+	def get_queryset(self):
+		return Evaluation.objects.all().order_by('cycle')
+
+
+@login_required
+def evaluationCreate(request, cycle):
+	literal_cycle = None
+	if cycle == 'cycle3':
+		literal_cycle = 'Cycle 3'
+	elif cycle == 'cycle4':
+		literal_cycle = 'Cycle 4'
+	else:
+		raise Http404("La page que vous souhaitez atteindre n'existe pas.")
+
+	if request.method == 'POST':
+		form = EvaluationForm(request.POST, cycle=literal_cycle)
+		if form.is_valid():
+			new_evaluation = form.save()
+
+			return HttpResponseRedirect('/results')
+	else:
+		form = EvaluationForm(cycle=literal_cycle)
+
+	return render(request, 'gestion/evaluation/evaluation_form.html', {'form': form, 'cycle': literal_cycle})
+
+@method_decorator(login_required, name='dispatch')
+class EvaluationUpdate(generic.edit.UpdateView):
+	""" Update Evaluation """
+	model = Evaluation
+	fields = ['description', 'trimestre', 'classe', 'competence', 'cycle']
+	template_name_suffix = 'gestion/evaluation/evaluation_update_form.html'
+
+@method_decorator(login_required, name='dispatch')
+class EvaluationDelete(generic.edit.DeleteView):
+	""" Delete Evaluation """
+	model = Evaluation
+	template_name = 'gestion/evaluation/evaluation_confirm_delete.html'
+	success_url = reverse_lazy('resultat:home')

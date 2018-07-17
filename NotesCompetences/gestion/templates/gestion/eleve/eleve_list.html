@@ -21,29 +21,7 @@
 </div> -->
 <br/>
 {% if eleve_list %}
-<table class="table table-hover table-responsive">
-	<thead>
-		<tr>
-			<th>Nom</th>
-			<th>Prénom</th>
-			<th>Actions</th>
-		</tr>
-	</thead>
-	<tbody>
-		{% for eleve in eleve_list %}
-		<tr>
-			<td>{{eleve.nom}}</td>
-			<td>{{eleve.prenom}}</td>
-			<td>
-				<div class="btn-group">
-					<a class="btn btn-sm btn-warning" href="{% url 'gestion:update_eleve' eleve.id %}">Modifier</a>
-					<a class="btn btn-sm btn-danger" href="{% url 'gestion:delete_eleve' eleve.id %}">Supprimer</a>
-				</div>
-			</td>
-		</tr>
-		{% endfor %}
-	</tbody>
-</table>
+{% include 'gestion/tables/eleve_table.html' %}
 {% else %}
 <p>Aucune donnée à afficher</p>
 {% endif %}

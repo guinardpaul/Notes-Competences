@@ -1,6 +1,7 @@
 from django.db import models
-from gestion.models import EnumCycle, Eleve, Competence
+from gestion.models import EnumCycle, Eleve, Competence, Classe, Evaluation
 from datetime import date
+from django.urls import reverse
 
 # Create your models here.
 class EnumResultat(models.Model):
@@ -10,25 +11,6 @@ class EnumResultat(models.Model):
 
 	def __str__(self):
 		return self.literal
-
-class EnumTrimestre(models.Model):
-	""" enum trimestre model """
-	literal = models.CharField(max_length=11)
-	value = models.IntegerField()
-
-	def __str__(self):
-		return self.literal
-
-class Evaluation(models.Model):
-	""" Evaluation model """
-	description = models.CharField(max_length=200)
-	created_at = models.DateField(auto_now=False, auto_now_add=False, default=date.today)
-	trimestre = models.ForeignKey(EnumTrimestre, on_delete=models.CASCADE)
-	cycle = models.ForeignKey(EnumCycle, on_delete=models.CASCADE)
-	competence = models.ManyToManyField(Competence)
-
-	def __str__(self):
-		return self.description
 
 class Resultat(models.Model):
 	""" Resultat model """
